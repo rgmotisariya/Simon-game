@@ -4,10 +4,10 @@ let btns = ["yello", "green", "red", "blue"];
 
 let started = false;
 let level = 0;
-
 let h2 = document.querySelector("h2");
+let sb = document.getElementById("sb");
 
-document.addEventListener("keypress", function () {
+sb.addEventListener("click", function () {
   if (!started) {
     console.log("game started");
     started = true;
@@ -18,7 +18,7 @@ document.addEventListener("keypress", function () {
 
 function levelup() {
   level++;
-  h2.textContent = `Level ${level}`;
+  h2.innerText = `Level ${level}`;
 
   // Flash a random color:
   let randomIdx = Math.floor(Math.random() * 4);
@@ -27,7 +27,7 @@ function levelup() {
   gameseq.push(randomColor);
   console.log(gameseq);
 
-  flashbtn(randomBtn).then(userTurn); 
+  flashbtn(randomBtn);
 }
 
 async function flashbtn(btn) {

@@ -10,6 +10,16 @@ html,body {
 h1,h2{
     text-align: center;
 }
+#sb{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: rgb(143, 143, 143);
+    border: 1px solid black;
+}
 .btn-containder{
     text-align: center;
     margin: 0 auto;
@@ -31,22 +41,22 @@ h1,h2{
 }
 
 .green{
-    background-color: rgb(48, 136, 48);
+    background-color: rgb(4, 123, 18);
 }
 .yello{
-  background-color: rgb(192, 192, 66);
+  background-color: rgb(219, 219, 7);
 }
 .blue{
-    background-color: rgb(77, 77, 160);
+    background-color: rgb(13, 13, 126);
 }
 .red{
-    background-color: rgb(161, 94, 94);
+    background-color: rgb(214, 1, 1);
 }
 .flash{
     background-color: aliceblue;
 }
 .userflash{
-    background-color: rgb(62, 243, 80);
+    background-color: rgb(33, 255, 255);
 }
 @media (max-width: 768px) {
     .btn-containder {
