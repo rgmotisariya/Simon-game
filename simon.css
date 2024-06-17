@@ -1,15 +1,10 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box; 
 }
 html,body {
     height: 100vh;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center
 
 }
 h1,h2{
@@ -17,9 +12,11 @@ h1,h2{
 }
 .btn-containder{
     text-align: center;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    height: 500px;
+    width: 500px;
    
 }
 .btn{
@@ -27,7 +24,7 @@ h1,h2{
     width: 200px;
     border: 4px solid black;
     border-radius: 20%;
-    margin: 1rem ;
+    margin: 2rem ;
 }
 .row-1{
     justify-content: space-around;
