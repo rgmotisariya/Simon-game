@@ -51,7 +51,7 @@ function userflashbtn(btn){
     btn.classList.add("userflash");
     setTimeout(function(){
        btn.classList.remove("userflash")
-    }, 200);
+    }, 400);
 }
 
 
