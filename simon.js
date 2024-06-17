@@ -1,89 +1,76 @@
-let gameseq=[];
-let userseq=[];
-let btns=["yello","green","red","blue"];
+let gameseq = [];
+let userseq = [];
+let btns = ["yello", "green", "red", "blue"];
 
-let started=false;
-let level=0; 
+let started = false;
+let level = 0;
 
-let h2=document.querySelector("h2");
-document.addEventListener("keypress",function(){
-    if(!started){
-        console.log("game started");
-        started=true;
-       
-        levelup();
-    }
+let h2 = document.querySelector("h2");
+
+document.addEventListener("keypress", function () {
+  if (!started) {
+    console.log("game started");
+    started = true;
+
+    levelup();
+  }
 });
-function levelup(){
-    level++;
-    h2.textContent=`Level ${level}`;
 
-    //flash rendom color: 
-   let rendomidx=Math.floor(Math.random() * 3);
-   let rendomcolor=btns[rendomidx];
-   let rendombtn=document.querySelector(`.${rendomcolor}`)
-    gameseq.push(rendomcolor);
-    console.log(gameseq);
-   flashbtn(rendombtn);
+function levelup() {
+  level++;
+  h2.textContent = `Level ${level}`;
+
+  // Flash a random color:
+  let randomIdx = Math.floor(Math.random() * 4);
+  let randomColor = btns[randomIdx];
+  let randomBtn = document.querySelector(`.${randomColor}`);
+  gameseq.push(randomColor);
+  console.log(gameseq);
+
+  flashbtn(randomBtn).then(userTurn); 
 }
 
-function flashbtn(btn){
-     btn.classList.add("flash");
-     setTimeout(function(){
-        btn.classList.remove("flash")
-     }, 300);
+async function flashbtn(btn) {
+  btn.classList.add("flash");
+  await new Promise((resolve) => setTimeout(resolve, 300)); 
+  btn.classList.remove("flash");
 }
 
-let allbtns=document.querySelectorAll(".btn");
-for(let b of allbtns){
-    b.addEventListener("click",btnPress);
-}
-function btnPress(){
-    let btn=this;
-    userflashbtn(btn);
-    usercolor=btn.getAttribute("id");
-    userseq.push(usercolor);
-    console.log(userseq);
-    checkans();
+let allBtns = document.querySelectorAll(".btn");
+for (let b of allBtns) {
+  b.addEventListener("click", btnPress);
 }
 
-function userflashbtn(btn){
-    btn.classList.add("userflash");
-    setTimeout(function(){
-       btn.classList.remove("userflash")
-    }, 400);
+function btnPress() {
+  let btn = this;
+  userflashbtn(btn);
+  let userColor = btn.getAttribute("id");
+  userseq.push(userColor);
+  console.log(userseq);
+  checkans();
 }
 
-
-
-// function checkans(){
-//     let idx=-1;
-//     console.log("level",idx);
-//     if(userseq[idx]===gameseq[idx]){
-//         console.log("right ans"); 
-//     }
-//     else{
-//         h2.innerText="Game overpress any key to  restart"
-//     }
-// }
+async function userflashbtn(btn) {
+  btn.classList.add("userflash");
+  await new Promise((resolve) => setTimeout(resolve, 400)); 
+  btn.classList.remove("userflash");
+}
 
 function checkans() {
-    for (let i = 0; i < userseq.length; i++) {
-      if (userseq[i] !== gameseq[i]) {
-        h2.innerText = "Game Over! Press any key to restart";
-        started = false; // Reset game state
-        gameseq = []; // Clear sequence
-        userseq = []; // Clear user sequence
-        return; // Exit the function after finding a mismatch
-      }
+  for (let i = 0; i < userseq.length; i++) {
+    if (userseq[i] !== gameseq[i]) {
+      h2.innerText = "Game Over! Press any key to restart";
+      started = false;
+      gameseq = [];
+      userseq = [];
+      return;
     }
-    // User sequence matches up to this point, check if it's complete
-    if (userseq.length === gameseq.length) {
-      console.log("Right answer!");
-      userseq = []; // Clear user sequence for the next level
-      levelup();
-    }
+  }
+
+  // User sequence matches up to this point, check if it's complete
+  if (userseq.length === gameseq.length) {
+    console.log("Right answer!");
+    userseq = [];
+    levelup();
+  }
 }
-
-
-
